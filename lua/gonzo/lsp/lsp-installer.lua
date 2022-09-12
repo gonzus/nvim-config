@@ -5,6 +5,7 @@ end
 
 local servers = {
   "sumneko_lua",
+  "zls",
 }
 
 lsp_installer.setup()

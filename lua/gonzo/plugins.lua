@@ -48,6 +48,9 @@ return packer.startup(function(use)
   -- color schemes
   use "lunarvim/darkplus.nvim" -- really nice
 
+  -- Zig
+  use "ziglang/zig.vim"
+
   -- git
   use "lewis6991/gitsigns.nvim" -- show git worldview next to line numbers
 
