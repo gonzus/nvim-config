@@ -40,21 +40,20 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- basic plugins
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
+  -- color schemes
+  use "lunarvim/darkplus.nvim" -- really nice
 
-  -- Git
-  use "lewis6991/gitsigns.nvim"
+  -- git
+  use "lewis6991/gitsigns.nvim" -- show git worldview next to line numbers
 
-  -- nvim-tree with nice icons
+  -- nvim-tree
   use {
-    'kyazdani42/nvim-tree.lua',
+    'kyazdani42/nvim-tree.lua', -- an explorer-like interface
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
@@ -62,12 +61,23 @@ return packer.startup(function(use)
 
   -- snazzy buffer line
   use {
-    'akinsho/bufferline.nvim',
+    'akinsho/bufferline.nvim', -- show buffer / file names on top
     tag = "v2.*",
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
   }
+
+  -- cmp: a completion engine
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+  -- snippets -- required by cmp
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
