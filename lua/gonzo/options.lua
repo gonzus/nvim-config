@@ -30,10 +30,10 @@ local options = {
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
-  scrolloff = 8,                           -- is one of my fav
-  sidescrolloff = 8,
-  -- guifont="Fira Code Nerd Font:h19",
-  guifont = "Hack:h17",               -- the font used in graphical neovim applications
+  scrolloff = 4,                           -- keep 4 lines visible top & bottom
+  sidescrolloff = 8,                       -- keep 8 chars visible left and right
+  -- guifont="Fira Code Nerd Font:h19",    -- the font used in graphical neovim applications
+  guifont = "Hack:h17",                    -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append "c"
