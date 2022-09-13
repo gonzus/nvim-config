@@ -94,6 +94,9 @@ return packer.startup(function(use)
   use { "williamboman/mason-lspconfig.nvim" } -- mason configuration
   use "neovim/nvim-lspconfig" -- enable LSP
 
+  -- Telescope
+  use "nvim-telescope/telescope.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

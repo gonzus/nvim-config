@@ -78,3 +78,6 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- *** Some nice toggles with leader combinations ***
 keymap("n", "<leader>f", ":NvimTreeToggle<CR>", opts)
+
+-- Some Telescope shortcuts
+keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
