@@ -1,7 +1,15 @@
+-- For now, add here the servers we know about
+local known_lsp_servers = {
+  "sumneko_lua",
+  "zls",
+}
+
 local status_mason_ok, mason_installer = pcall(require, "mason")
 if not status_mason_ok then
+  print("Could not require module 'mason'")
   return
 end
+
 mason_installer.setup {
   ui = {
     icons = {
@@ -15,53 +23,48 @@ mason_installer.setup {
 
 local status_mason_lspconfig_ok, mason_lspconfig_installer = pcall(require, "mason-lspconfig")
 if not status_mason_lspconfig_ok then
+  print("Could not require module 'mason-lspconfig'")
   return
 end
 
-local servers = {
-  -- "lua-language-server",
-  "sumneko_lua",
-  "zls",
-}
 mason_lspconfig_installer.setup {
-  ensure_installed = servers,
+  ensure_installed = known_lsp_servers,
   automatic_installation = true,
 }
 
 local status_lspconfig_ok, lspconfig_installer = pcall(require, "lspconfig")
 if not status_lspconfig_ok then
+  print("Could not require module 'lspconfig'")
   return
 end
 
-mason_lspconfig_installer.setup_handlers({
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
+local status_gonzo_handlers_ok, handler_config = pcall(require, "gonzo.lsp.handlers")
+if not status_gonzo_handlers_ok then
+  print("Could not require module 'gonzo.lsp.handers'")
+  return
+end
+
+local handlers = {
   function (server_name) -- default handler (optional)
     lspconfig_installer[server_name].setup{}
   end,
-  -- Next, you can provide targeted overrides for specific servers.
-  ["sumneko_lua"] = function ()
+}
+for _, server_name in ipairs(known_lsp_servers) do
+  handlers[server_name] = function ()
     local opts = {
-      on_attach = require("gonzo.lsp.handlers").on_attach,
-      capabilities = require("gonzo.lsp.handlers").capabilities,
+      on_attach = handler_config.on_attach,
+      capabilities = handler_config.capabilities,
     }
-    local sumneko_opts = require "gonzo.lsp.settings.sumneko_lua"
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-    lspconfig_installer["sumneko_lua"].setup(opts)
-  end,
-})
+    local settings = "gonzo.lsp.settings." .. server_name
+    local status_ok, server_opts = pcall(require, settings)
+    if status_ok then
+      print("GONZO: adding server opts for " .. server_name .. " from " .. settings)
+      opts = vim.tbl_deep_extend("force", server_opts, opts)
+    else
+      print("GONZO: using server " .. server_name .. " with default opts")
+    end
+    lspconfig_installer[server_name].setup(opts)
+  end
+end
 
--- for _, name in ipairs(servers) do
---   -- opts = {
---   --   on_attach = require("gonzo.lsp.handlers").on_attach,
---   --   capabilities = require("gonzo.lsp.handlers").capabilities,
---   -- }
---
---   -- if server == "sumneko_lua" then
---   --   local sumneko_opts = require "gonzo.lsp.settings.sumneko_lua"
---   --   opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
---   -- end
---
---   local ok, server = lspconfig_installer[name].setup{}
--- end
+mason_lspconfig_installer.setup_handlers(handlers)
