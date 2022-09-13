@@ -2,6 +2,8 @@
 local known_lsp_servers = {
   "sumneko_lua",
   "zls",
+  "clangd",
+  "sqls",
 }
 
 local status_mason_ok, mason_installer = pcall(require, "mason")
