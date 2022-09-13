@@ -63,7 +63,8 @@ return packer.startup(function(use)
   use {
     'kyazdani42/nvim-tree.lua', -- an explorer-like interface
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      'kyazdani42/nvim-web-devicons', -- hacker icons
+      opt = true, -- optional
     },
   }
 
@@ -72,7 +73,17 @@ return packer.startup(function(use)
     'akinsho/bufferline.nvim', -- show buffer / file names on top
     tag = "v2.*",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      'kyazdani42/nvim-web-devicons', -- hacker icons
+      opt = true, -- optional
+    },
+  }
+
+  -- snazzy status line
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- hacker icons
+      opt = true, -- optional
     },
   }
 
