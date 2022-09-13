@@ -6,7 +6,7 @@ local known_lsp_servers = {
 
 local status_mason_ok, mason_installer = pcall(require, "mason")
 if not status_mason_ok then
-  print("Could not require module 'mason'")
+  vim.notify("Could not require module 'mason'")
   return
 end
 
@@ -23,7 +23,7 @@ mason_installer.setup {
 
 local status_mason_lspconfig_ok, mason_lspconfig_installer = pcall(require, "mason-lspconfig")
 if not status_mason_lspconfig_ok then
-  print("Could not require module 'mason-lspconfig'")
+  vim.notify("Could not require module 'mason-lspconfig'")
   return
 end
 
@@ -34,16 +34,11 @@ mason_lspconfig_installer.setup {
 
 local status_lspconfig_ok, lspconfig_installer = pcall(require, "lspconfig")
 if not status_lspconfig_ok then
-  print("Could not require module 'lspconfig'")
+  vim.notify("Could not require module 'lspconfig'")
   return
 end
 
-local status_gonzo_handlers_ok, handler_config = pcall(require, "gonzo.lsp.handlers")
-if not status_gonzo_handlers_ok then
-  print("Could not require module 'gonzo.lsp.handers'")
-  return
-end
-
+local handler_config = require("gonzo.lsp.handlers")
 local handlers = {
   function (server_name) -- default handler (optional)
     lspconfig_installer[server_name].setup{}
@@ -58,10 +53,10 @@ for _, server_name in ipairs(known_lsp_servers) do
     local settings = "gonzo.lsp.settings." .. server_name
     local status_ok, server_opts = pcall(require, settings)
     if status_ok then
-      print("GONZO: adding server opts for " .. server_name .. " from " .. settings)
+      -- print("GONZO: adding server opts for " .. server_name .. " from " .. settings)
       opts = vim.tbl_deep_extend("force", server_opts, opts)
     else
-      print("GONZO: using server " .. server_name .. " with default opts")
+      -- print("GONZO: using server " .. server_name .. " with default opts")
     end
     lspconfig_installer[server_name].setup(opts)
   end

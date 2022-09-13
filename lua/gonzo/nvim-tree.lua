@@ -4,11 +4,13 @@ vim.g.loaded_netrwPlugin = 1
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
+  vim.notify("Could not require module 'nvim_tree'")
   return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
+  vim.notify("Could not require module 'nvim_tree.config'")
   return
 end
 

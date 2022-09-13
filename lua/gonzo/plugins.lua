@@ -26,17 +26,21 @@ vim.cmd [[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+  vim.notify("Could not require module 'packer'")
   return
 end
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
+local status_util_ok, packer_util = pcall(require, "packer.util")
+if status_util_ok then
+  -- Have packer use a popup window
+  packer.init {
+    display = {
+      open_fn = function()
+        return packer_util.float { border = "rounded" }
+      end,
+    },
+  }
+end
 
 -- Install your plugins here
 return packer.startup(function(use)
@@ -86,16 +90,13 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- LSP -- language server protocol
-  -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  -- use "neovim/nvim-lspconfig" -- enable LSP
-  use { "williamboman/mason.nvim" }
-  use { "williamboman/mason-lspconfig.nvim" }
+  use { "williamboman/mason.nvim" } -- mason LSP loader
+  use { "williamboman/mason-lspconfig.nvim" } -- mason configuration
   use "neovim/nvim-lspconfig" -- enable LSP
-
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
+    packer.sync()
   end
 end)
