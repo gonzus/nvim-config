@@ -45,7 +45,7 @@ keymap("n", "<S-Left>", ":vertical resize +2<CR>", opts)
 
 -- *** Insert Mode ***
 
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 
 
@@ -81,3 +81,6 @@ keymap("n", "<leader>f", ":NvimTreeToggle<CR>", opts)
 
 -- Some Telescope shortcuts
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+
+-- Indent whole file while preserving cursor location with <leader>=
+keymap("n", "<leader>=", "m'gg=G`'", opts)
