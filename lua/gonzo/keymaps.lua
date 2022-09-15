@@ -76,6 +76,10 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- Switch to previous / next buffer
+keymap("n", "<leader>l", ":bnext<CR>", opts)
+keymap("n", "<leader>h", ":bprevious<CR>", opts)
+
 -- *** Some nice toggles with leader combinations ***
 keymap("n", "<leader>f", ":NvimTreeToggle<CR>", opts)
 
