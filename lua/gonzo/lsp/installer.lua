@@ -43,6 +43,7 @@ end
 local handler_config = require("gonzo.lsp.handlers")
 local handlers = {
   function (server_name) -- default handler (optional)
+    -- print("GONZO: adding default server opts for " .. server_name )
     lspconfig_installer[server_name].setup{}
   end,
 }

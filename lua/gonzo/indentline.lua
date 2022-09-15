@@ -9,7 +9,6 @@ vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "space:"
 vim.opt.listchars:append "eol:↴"
 
-vim.notify("Configuring 'indent_blankline'")
 indent_blankline.setup({
   use_treesitter = true,
   filetype_exclude = {
