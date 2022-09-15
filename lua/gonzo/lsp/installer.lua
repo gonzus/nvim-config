@@ -4,6 +4,8 @@ local known_lsp_servers = {
   "zls",
   "clangd",
   "sqls",
+  "jsonls",
+  "perlnavigator",
 }
 
 local status_mason_ok, mason_installer = pcall(require, "mason")
