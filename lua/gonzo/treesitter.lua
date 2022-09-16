@@ -5,8 +5,21 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = { "c", "lua", "zig" },
-  sync_install = false, 
+  ensure_installed = {
+    "c",
+    "gitattributes",
+    "gitignore",
+    "hack",
+    "html",
+    "json",
+    "lua",
+    "markdown",
+    "perl",
+    "sql",
+    "typescript",
+    "zig",
+  },
+  sync_install = false,
   ignore_install = { "" }, -- List of parsers to ignore installing
 
   highlight = {
