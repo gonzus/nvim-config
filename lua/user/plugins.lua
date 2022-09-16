@@ -122,6 +122,9 @@ return packer.startup(function(use)
   -- Visible indentation lines
   use "lukas-reineke/indent-blankline.nvim"
 
+  -- show colors in... color!
+  use("norcalli/nvim-colorizer.lua")
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
