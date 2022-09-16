@@ -43,7 +43,7 @@ if not status_lspconfig_ok then
   return
 end
 
-local handler_config = require("gonzo.lsp.handlers")
+local handler_config = require("user.lsp.handlers")
 local handlers = {
   function (server_name) -- default handler (optional)
     -- print("GONZO: adding default server opts for " .. server_name )
@@ -56,7 +56,7 @@ for _, server_name in ipairs(known_lsp_servers) do
       on_attach = handler_config.on_attach,
       capabilities = handler_config.capabilities,
     }
-    local settings = "gonzo.lsp.settings." .. server_name
+    local settings = "user.lsp.settings." .. server_name
     local status_ok, server_opts = pcall(require, settings)
     if status_ok then
       -- print("GONZO: adding server opts for " .. server_name .. " from " .. settings)

@@ -1,7 +1,7 @@
-require "gonzo.options"
-require "gonzo.keymaps"
-require "gonzo.plugins"
-require "gonzo.lsp"
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.lsp"
 
 -- require "gonzo.colorscheme"
 -- require "gonzo.cmp"

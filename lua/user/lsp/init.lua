@@ -4,7 +4,7 @@ if not status_ok then
 	return
 end
 
-require("gonzo.lsp.installer")
+require("user.lsp.installer")
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
