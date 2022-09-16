@@ -1,3 +1,8 @@
+--
+-- Main configuration file for nvim
+-- https://github.com/gonzus/nvim-config
+--
+
 require "user.options"
 require "user.keymaps"
 require "user.plugins"

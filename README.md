@@ -1,2 +1,3 @@
-# nvim-config
-My neovim configuration
+# Directory `.config/nvim/`
+
+My [neovim](https://neovim.io/) configuration.
