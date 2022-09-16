@@ -50,6 +50,9 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "RRethy/vim-illuminate" -- auto-highlighting
 
+  -- make nvim startup faster?
+  use 'lewis6991/impatient.nvim'
+
   -- color schemes
   use "lunarvim/darkplus.nvim" -- really nice
 
